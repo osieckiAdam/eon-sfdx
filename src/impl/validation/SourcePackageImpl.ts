@@ -118,6 +118,13 @@ export default class SourcePackageImpl {
             EONLogger.log(COLOR_HEADER(`Yippiee. 🤙 Validation finsihed without errors. Great 🤜🤛`));
         } catch (e) {
             EONLogger.log(COLOR_ERROR(e));
+            if(e instanceof SfError) {
+              throw new Error(e.message);
+            } else if (e instanceof Error) {
+              throw new Error(e.message);
+            } else {
+              throw new Error('Unknown error occured. Please contact your system administrator.');
+            }
         }
         return {};
     }
