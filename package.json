@@ -19,6 +19,7 @@
     "@flxbl-io/sfp": "^39.2.2",
     "@oclif/core": "^3",
     "@salesforce/core": "^8.6.1",
+    "@salesforce/kit": "^3.2.3",
     "@salesforce/packaging": "^4.0.4",
     "@salesforce/schemas": "^1.9.0",
     "@salesforce/source-deploy-retrieve": "^10.2.13",

@@ -78,19 +78,19 @@ export default class Changelog extends EonCommand {
             message: dedent(`${COLOR_HEADER('Please choose a changelog strategy')}
                        ${COLOR_TRACE_ITALIC('"Staged" creates a changelog from your staged changes.')}
                        ${COLOR_TRACE_ITALIC(
-                           'This is useful when you like to update the readme with your staged changes.'
-                       )}
+                'This is useful when you like to update the readme with your staged changes.'
+            )}
                        ${COLOR_TRACE_ITALIC('"Head" fetches the changes from your branch against origin/main.')}
                        ${COLOR_TRACE_ITALIC(
-                           'This is useful if you want to update (only) the readme and create a new commit for this change.'
-                       )}`),
+                'This is useful if you want to update (only) the readme and create a new commit for this change.'
+            )}`),
             choices: [COLOR_HEADER('Staged'), COLOR_HEADER('Head')],
         })
             .run()
             .catch(console.error);
 
         if (gitDiffStrategy.includes('Staged')) {
-            diffFlags = ['--staged'];
+            diffFlags = ['--staged', '--no-ext-diff'];
         } else {
             diffFlags = [`origin/main...HEAD`, `--no-renames`, `--name-only`];
         }
@@ -300,7 +300,7 @@ Following Details will be updated:
 
         for (let update of updatedPackages) {
             const index = jsonPd.indexOf(
-              jsonPd.find((pck) => pck.package === update.package)
+                jsonPd.find((pck) => pck.package === update.package)
             );
             if (~index) {
                 // we need this step for windows users to normalize the path
